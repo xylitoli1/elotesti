@@ -2,8 +2,7 @@ const { response } = require('express');
 const { json } = require('express/lib/response');
 var querystring = require('querystring');
 var url = require('url');
-let urlosote = new URL(window.location.href);
-let params = new URLSearchParams(urlosote.search);
+
 
 const app = require('express')();
 const port = process.env.PORT || 8080;
