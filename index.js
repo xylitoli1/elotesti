@@ -7,7 +7,12 @@ var url = require('url');
 const app = require('express')();
 const port = process.env.PORT || 8080;
 
-console.log("Window Location:", window.location);
+let sijanti = "tyhjyys";
+
+if (typeof window !== "undefined") {
+    sijanti = window.location.href; 
+}
+
 
 let objelo;
 let objlvl;
@@ -31,7 +36,8 @@ fetch('https://open.faceit.com/data/v4/players?nickname=LaterMay6e&game=cs2', {
     res.status(200).send({
         faceitnickname: req.query.nimi,
         elo: objelo,
-        lvl: objlvl
+        lvl: objlvl,
+        testi: sijanti
         
     })
 })
