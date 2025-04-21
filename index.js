@@ -2,12 +2,16 @@ const { response } = require('express');
 const { json } = require('express/lib/response');
 var querystring = require('querystring');
 var url = require('url');
+let urlosote = new URL(window.location.href);
+let params = new URLSearchParams(urlosote.search);
 
 const app = require('express')();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
+let kayttajanimi = params.get('nimi');
 
-let obj;
+let objelo;
+let objlvl;
 
 fetch('https://open.faceit.com/data/v4/players?nickname=LaterMay6e&game=cs2', {
     headers: {
@@ -17,16 +21,20 @@ fetch('https://open.faceit.com/data/v4/players?nickname=LaterMay6e&game=cs2', {
   })
   .then(res => res.json())
   .then(data => {
-    obj = data.games.cs2.faceit_elo;
-    testi = JSON.stringify(obj)
-    console.log(testi)
+    objelo = data.games.cs2.faceit_elo;
+    objlvl = data.games.cs2.skill_level;
+    testi = JSON.stringify(objelo)
+    testi2 = JSON.stringify(objlvl)
+    console.log(data)
    });
 
    app.get('/elo', (req, res) => {
     res.status(200).send({
-        elo: obj,
-        lvl: obj,
-        testing: req.query.n,
+        faceitnickname: req.query.nimi,
+        nimi: kayttajanimi,
+        elo: objelo,
+        lvl: objlvl
+        
     })
 })
 
