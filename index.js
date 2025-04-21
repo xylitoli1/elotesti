@@ -7,7 +7,7 @@ var url = require('url');
 const app = require('express')();
 const port = process.env.PORT || 8080;
 
-let kayttajanimi = params.get('nimi');
+
 
 let objelo;
 let objlvl;
@@ -30,7 +30,7 @@ fetch('https://open.faceit.com/data/v4/players?nickname=LaterMay6e&game=cs2', {
    app.get('/elo', (req, res) => {
     res.status(200).send({
         faceitnickname: req.query.nimi,
-        nimi: kayttajanimi,
+
         elo: objelo,
         lvl: objlvl
         
