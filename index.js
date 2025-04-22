@@ -43,8 +43,8 @@ app.get('/', async (req, res) => {
       lvl: pelaajatiedot.games.cs2.skill_level,
       luotu: pelaajatiedot.activated_at,
       ika_pv: paivat,
-      pelit: pelaajastatsit.lifetime.Wins,
-      voitot: pelaajastatsit.lifetime.Matches,
+      pelit: pelaajastatsit.lifetime.Matches,
+      voitot: pelaajastatsit.lifetime.Wins,
       voittoputki: pelaajastatsit.lifetime["Longest Win Streak"]
     });
   } catch (error) {
